@@ -20,7 +20,7 @@ ANSWER_CHOICE = (
     )
 class Problem(models.Model):
     title = models.CharField(max_length=100, help_text="문제 이름")
-    unit = models.CharField(max_length=30, help_text="단원", choices=UNIT_CHOICE)
+    unit = models.PositiveIntegerField(default=1, help_text="단원",blank=True, choices=UNIT_CHOICE)
     ex1 = models.CharField(max_length=200, help_text="보기1")
     ex2 = models.CharField(max_length=200, help_text="보기2")
     ex3 = models.CharField(max_length=200, help_text="보기3")
