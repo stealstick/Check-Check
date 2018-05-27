@@ -25,7 +25,7 @@ SECRET_KEY = 'i41_$*9zs%8(_z142cp0$1jp8k)6i8mj4ktoglz@u4!sk-!^ok'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 # AUTH User
 AUTH_USER_MODEL = 'accounts.User'
 
