@@ -1,0 +1,8 @@
+.custom-nav{
+  box-shadow: none;
+  border-bottom: solid 1px #ddd;
+  background-color: white;
+  color: #232323;
+  font-size: 18px;
+  text-align: center;
+}

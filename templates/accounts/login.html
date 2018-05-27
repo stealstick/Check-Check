@@ -1,0 +1,30 @@
+{% extends "main/base.html" %} {% load staticfiles %} {% block style %}
+<link rel="stylesheet" href="{% static '/css/login.css' %}"> {% endblock %}
+{% block content %}
+
+<div class="custom-container">
+  <div class="row">
+    <p class="center logo purple-text">
+      LOGO
+    </p>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="password" type="text" class="validate">
+      <label for="password" class="label">Username</label>
+    </div>
+    <div class="input-field col s12">
+      <input id="password" type="password" class="validate">
+      <label for="password">Password</label>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn purple col s12 login-btn" type="submit">
+      로그인
+    </button>
+  </div>
+  <div class="row center go-join">
+    <p>혹시 아직 회원이 아니신가요?&nbsp;&nbsp;<a href="/accounts/join/" class="purple-text">회원가입</a></p>
+  </div>
+</div>
+{% endblock %}

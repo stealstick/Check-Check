@@ -65,3 +65,6 @@ body{
     -webkit-transition: color .28s ease;
     transition: color .28s ease;
 }
+.progress {
+    background-color: rgb(255,140,150);
+}
