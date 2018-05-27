@@ -1,0 +1,67 @@
+body{
+  background: #f5f5f5;
+}
+.margin-zero{
+  margin:0 !important;
+}
+.padding-zero{
+  padding: 0 !important;
+}
+.custom-tab{
+  position: fixed;
+  bottom: 0;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-color: #ccc;
+  background: #fff;
+}
+.custom-card{
+  margin-top: 20px;
+  margin-bottom: 0;
+  border-radius: 22px;
+  height: 28vh;
+}
+.custom-card-button{
+  height: 8vh;
+  margin-top: 20px;
+  margin-bottom: 0;
+  border-radius: 22px;
+  background-color: rgb(120,20,180);
+  box-shadow: none;
+}
+.custom-card-button-2{
+  background: none;
+  border-color: rgb(120,20,180);
+  border-width: 1px;
+  border-style: solid;
+  color: rgb(120,20,180);
+}
+.custom-card-title{
+  line-height: 8vh;
+}
+.card-1{
+
+  background-image: url('/static/img/su.jpg');
+  background-size: 100%;
+  background-position: center;
+}
+.card-2{
+  background-image: url('/static/img/sub.jpg');
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: transparent;
+    color: rgba(180,20,180);
+    font-weight: 800;
+}
+.tabs .tab a {
+    color: rgba(110,110,110,0.7);
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0 24px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-transition: color .28s ease;
+    transition: color .28s ease;
+}

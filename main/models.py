@@ -1,6 +1,5 @@
 from django.db import models
 from accounts.models import User
-
 UNIT_CHOICE = (
         (1, '생활과 윤리의 의의 '),
         (2, '생명.성 윤리'),
@@ -19,8 +18,9 @@ ANSWER_CHOICE = (
         (5, '5'),
     )
 class Problem(models.Model):
-    title = models.CharField(max_length=100, help_text="문제 이름")
+    title = models.CharField(max_length=100, help_text="문제")
     unit = models.PositiveIntegerField(default=1, help_text="단원",blank=True, choices=UNIT_CHOICE)
+    image = models.ImageField(blank=True)
     ex1 = models.CharField(max_length=200, help_text="보기1")
     ex2 = models.CharField(max_length=200, help_text="보기2")
     ex3 = models.CharField(max_length=200, help_text="보기3")
