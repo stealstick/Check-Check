@@ -1,15 +1,5 @@
 from django.db import models
 from accounts.models import User
-UNIT_CHOICE = (
-        (1, '생활과 윤리의 의의 '),
-        (2, '생명.성 윤리'),
-        (3, '가족 윤리'),
-        (4, '과학.생태.정보 윤리'),
-        (5, '사회 정의'),
-        (6, '직업윤리'),
-        (7, '문화와 윤리'),
-        (8, '평화와 윤리'),
-    )
 ANSWER_CHOICE = (
         (1, '1'),
         (2, '2'),
@@ -17,9 +7,15 @@ ANSWER_CHOICE = (
         (4, '4'),
         (5, '5'),
     )
+
+class Unit(models.Model):
+    unit= models.CharField(max_length=200, help_text="단원")
 class Problem(models.Model):
     title = models.CharField(max_length=100, help_text="문제")
-    unit = models.PositiveIntegerField(default=1, help_text="단원",blank=True, choices=UNIT_CHOICE)
+    unit = models.ForeignKey(
+        'Unit',
+        on_delete=models.CASCADE,
+    )
     image = models.ImageField(blank=True)
     ex1 = models.CharField(max_length=200, help_text="보기1")
     ex2 = models.CharField(max_length=200, help_text="보기2")
