@@ -1,4 +1,4 @@
-{% extends "main/base.html" %} {% load staticfiles %} {% block style %}
+{% extends "accounts/base.html" %} {% load staticfiles %} {% block style %}
 <link rel="stylesheet" href="{% static '/css/login.css' %}"> {% endblock %}
 {% block content %}
 
@@ -8,27 +8,51 @@
       JOIN
     </p>
   </div>
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="password" type="text" class="validate">
-      <label for="password" class="label">Username</label>
+  <form action="." id="join" method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="username" name="username" type="text" class="validate">
+        <label for="password" class="label">Username</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="password" name="password" type="password" class="validate">
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="repassword" name="repassword" type="password" class="validate">
+        <label for="password">Re Password</label>
+      </div>
     </div>
-    <div class="input-field col s12">
-      <input id="password" type="password" class="validate">
-      <label for="password">Password</label>
+    <div class="row">
+      <button type="button" class="btn purple col s12 login-btn" onclick="check_join()">
+        로그인
+      </button>
     </div>
-    <div class="input-field col s12">
-      <input id="password" type="password" class="validate">
-      <label for="password">Re Password</label>
-    </div>
-  </div>
-  <div class="row">
-    <button class="btn purple col s12 login-btn" type="submit">
-      로그인
-    </button>
-  </div>
+  </form>
   <div class="row center go-login">
-    <p>혹시 회원이신가요?&nbsp;&nbsp;<a href="/accounts/login/" class="purple-text">회원가입</a></p>
+    <p>혹시 회원이신가요?&nbsp;&nbsp;<a href="/accounts/login/" class="purple-text">로그인</a></p>
   </div>
 </div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+  {% if form %}
+      Materialize.toast("이미 존재하는 아이디 입니다.", 2111);
+    {% endif %}
+  function check_join(){
+    if (document.getElementById('password').value && document.getElementById('repassword').value && document.getElementById('username').value){
+      if (document.getElementById('password').value == document.getElementById('repassword').value){
+        document.getElementById('join').submit();
+      }
+      else{
+        Materialize.toast("비밀번호가 서로 다릅니다.", 1111);
+      }
+    }
+    else{
+      Materialize.toast("입력창이 비어져 있습니다..", 1111);
+    }
+    
+  }
+</script>
 {% endblock %}

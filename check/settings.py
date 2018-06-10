@@ -119,9 +119,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-MEDIA_URL = '/media/' # 항상 / 로 끝나도록 설정
-# MEDIA_URL = 'http://static.myservice.com/media/' 다른 서버로 media 파일 복사시
+MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+LOGIN_REDIRECT_URL = '/'

@@ -1,4 +1,4 @@
-{% extends "main/base.html" %} {% load staticfiles %} {% block style %}
+{% extends "accounts/base.html" %} {% load staticfiles %} {% block style %}
 <link rel="stylesheet" href="{% static '/css/login.css' %}"> {% endblock %}
 {% block content %}
 
@@ -8,23 +8,37 @@
       LOGO
     </p>
   </div>
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="password" type="text" class="validate">
-      <label for="password" class="label">Username</label>
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="username" name="username" type="text" class="validate">
+        <label for="password" class="label">Username</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="password" type="password" name="password" class="validate">
+        <label for="password">Password</label>
+      </div>
     </div>
-    <div class="input-field col s12">
-      <input id="password" type="password" class="validate">
-      <label for="password">Password</label>
+    <div class="row">
+      <button class="btn purple col s12 login-btn" type="submit">
+        로그인
+      </button>
     </div>
-  </div>
-  <div class="row">
-    <button class="btn purple col s12 login-btn" type="submit">
-      로그인
-    </button>
-  </div>
+  </form>
   <div class="row center go-join">
     <p>혹시 아직 회원이 아니신가요?&nbsp;&nbsp;<a href="/accounts/join/" class="purple-text">회원가입</a></p>
   </div>
 </div>
+
+{% endblock %}
+{% block script %} 
+<script type="text/javascript">
+  {% if form.errors %}
+  Materialize.toast("아이디나 비밀번호를 다시 확인해주세요", 1111);
+  {% endif %}
+  {% if join %}
+  Materialize.toast("회원가입에 성공하였습니다", 1111);
+  {% endif %}
+</script>
 {% endblock %}
