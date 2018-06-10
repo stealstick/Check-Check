@@ -10,6 +10,8 @@ ANSWER_CHOICE = (
 
 class Unit(models.Model):
     unit= models.CharField(max_length=200, help_text="단원")
+    def __str__(self):
+        return self.unit
 class Problem(models.Model):
     title = models.CharField(max_length=100, help_text="문제")
     unit = models.ForeignKey(
