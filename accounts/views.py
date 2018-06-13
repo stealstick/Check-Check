@@ -6,7 +6,11 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.http import HttpResponse, HttpResponseRedirect
-
+def gologin(request):
+    if request.user.is_active:
+        return HttpResponseRedirect("/")
+    else:
+        return render(request, 'accounts/gologin.html')
 def login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
