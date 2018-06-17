@@ -1,4 +1,102 @@
 {% extends "test/base.html" %} {% load staticfiles %} {% block style %}
 <link rel="stylesheet" href="{% static '/css/test.css' %}"> {% endblock %}
 {% block content %}
+<nav class="nav-extended custom-nav">
+  <div class="nav-wrapper">
+    <span href="#" class="left"> <i class="material-icons">keyboard_backspace</i>
+    </span>
+    <span href="#modal2" class="right end modal-trigger">마치기
+    </span>
+  </div>
+</nav>
+<div class="container">
+  <p>(가)의 갑, 을, 병 사상가들의 입장을 (나) 그림으로 탐구할 때, A~D에 들어갈 질문으로 옳지 않은 것은?</p>
+  <img src="http://13.209.5.196:8000/media/15_6OUOBkf.PNG" width="100%">
+  <div class="row bogi-list">
+    <div class="row bogi">
+      <div class="col s1">
+        ①
+      </div>
+      <div class="col s11">
+        ㄱ, ㄴ, ㄷ
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ②
+      </div>
+      <div class="col s11">
+        ㄱ, ㄴ, ㄷ
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ③
+      </div>
+      <div class="col s11">
+        ㄱ, ㄴ, ㄷ
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ④
+      </div>
+      <div class="col s11">
+        ㄱ, ㄴ, ㄷ
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ⑤
+      </div>
+      <div class="col s11">
+        ㄱ, ㄴ, ㄷ
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer-bar">
+  <div class="input-field col s3 offset-s1 input-answer">
+    <select>
+      <option value="" disabled selected>답</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </div>
+  <div class="col s8 modal-trigger" href="#modal1"">
+    <p class="next-question">확인 후 다음문제</p>
+  </div>
+</div>
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5 class="red-text">틀렸습니다!</h5>
+    <p>정답은 5번입니다.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">확인</a>
+  </div>
+</div>
+<div id="modal2" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5 class="">테스트를 마치시겠습니까?</h5>
+    <p>문제풀이 기록은 MY탭에 있습니다.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">확인</a>
+  </div>
+</div>
+{% endblock %}
+{% block script %}<script>
+  (function($){
+    $(function(){
+    // Plugin initialization
+    $('select').not('.disabled').formSelect();
+    $('.modal').modal();
+
+  }); 
+})(jQuery); // end of jQuery name space
+</script>
 {% endblock %}
