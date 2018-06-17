@@ -28,6 +28,7 @@ body{
   border-radius: 22px;
   background-color: rgb(120,20,180);
   box-shadow: none;
+  width: 100% !important;
 }
 .custom-card-button-2{
   background: none;

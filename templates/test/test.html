@@ -95,7 +95,11 @@
     // Plugin initialization
     $('select').not('.disabled').formSelect();
     $('.modal').modal();
-
+    $('#modal2').modal({
+    onCloseEnd: function() {
+      window.location.href = '/';
+    }
+  });
   }); 
 })(jQuery); // end of jQuery name space
 </script>
