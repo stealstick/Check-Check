@@ -1,0 +1,89 @@
+{% extends "main/base.html" %} {% load staticfiles %} {% block style %}
+<link rel="stylesheet" href="{% static '/css/history.css' %}"> {% endblock %}
+{% block content %}
+<nav class="nav-extended custom-nav">
+  <div class="nav-wrapper">
+
+      <a href="#" class="brand-logo purple-text center" style="font-weight:100">History</a>
+    <span href="/" class="left" onclick="window.location.href='/'"> <i class="material-icons">keyboard_backspace</i>
+    </span>
+    </span>
+  </div>
+</nav>
+<div class="row slide-img" style="background-image:url({% static '/img/history.png' %}); background-size:cover; color: white; padding: 40px; font-size: 18px; text-align: center; font-weight: 100;">
+  푼 문제들을 확인하실 수 있습니다.
+</div>
+<div class="row">
+  <ul class="collapsible">
+    {% for solvelog in solvelogs %}
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">check</i>
+        <p class="truncate margin-zero">{{ solvelog.problem }}</p> 
+        
+          {% if solvelog.collect %}
+          <span class="new blue badge">맞음
+          {% else %}
+          <span class="new red badge">틀림
+          {% endif %}
+
+        </span></div>
+        <div class="collapsible-body">
+          <p>{{ solvelog.problem.title }}</p>
+
+  {% if solvelog.problem.image %}
+  <img src="/media/{{ solvelog.problem.image }}" width="100%">
+  {% endif %}
+  <div class="row bogi-list">
+    <div class="row bogi">
+      <div class="col s1 {% if solvelog.problem.answer == 1 %}green-text{% endif %} {% if solvelog.answer == 1 %}red-text{% endif %}">
+        ①
+      </div>
+      <div class="col s11 {% if solvelog.problem.answer == 1 %}green-text{% endif %} {% if solvelog.answer == 1 %}red-text{% endif %}">
+        {{ solvelog.problem.ex1 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1 {% if solvelog.problem.answer == 2 %}green-text{% endif %} {% if solvelog.answer == 2 %}red-text{% endif %}">
+        ②
+      </div>
+      <div class="col s11 {% if solvelog.problem.answer == 2 %}green-text{% endif %} {% if solvelog.answer == 2 %}red-text{% endif %}">
+        {{ solvelog.problem.ex2 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1 {% if solvelog.problem.answer == 3 %}green-text{% endif %} {% if solvelog.answer == 3 %}red-text{% endif %}">
+        ③
+      </div>
+      <div class="col s11 {% if solvelog.problem.answer == 3 %}green-text{% endif %} {% if solvelog.answer == 3 %}red-text{% endif %}">
+        {{ solvelog.problem.ex3 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1 {% if solvelog.problem.answer == 4 %}green-text{% endif %} {% if solvelog.answer == 4 %}red-text{% endif %}">
+        ④
+      </div>
+      <div class="col s11 {% if solvelog.problem.answer == 4 %}green-text{% endif %} {% if solvelog.answer == 4 %}red-text{% endif %}">
+        {{ solvelog.problem.ex4 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1 {% if solvelog.problem.answer == 5 %}green-text{% endif %} {% if solvelog.answer == 5 %}red-text{% endif %}">
+        ⑤
+      </div>
+      <div class="col s11 {% if solvelog.problem.answer == 5 %}green-text{% endif %} {% if solvelog.answer == 5 %}red-text{% endif %}">
+        {{ solvelog.problem.ex5 }}
+      </div>
+    </div>
+  </div>
+        </div>
+      </li>
+      {% endfor %}
+      <li>
+      </ul>
+    </div>
+    {% endblock %}
+
+
+
+

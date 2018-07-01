@@ -44,7 +44,7 @@ def join(request):
         useradd = User(username=username, password=password)
         useradd.set_password(password)
         useradd.save()
-        Timeline.objects.create(user=useradd, title="회원가입", content="새로운 회원이 가입하였습니다!")
+        Timeline.objects.create(user=useradd, title=useradd.username, content="새로운 회원이 가입하였습니다!", icon="assignment_ind")
         return HttpResponseRedirect("/accounts/login/?join=success")
     return render(request, 'accounts/join.html')
 

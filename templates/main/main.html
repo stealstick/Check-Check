@@ -28,12 +28,12 @@
         <p>실제 수능과 같은 형식으로 시험이 진행됩니다.</p>
     </div>
 </div>
-<div class="waves-effect card custom-card-button" onclick="window.location.href = '/test/';">
+<div class="waves-effect card custom-card-button" onclick="window.location.href = '/test/practice/';">
   <div class="card-content white-text padding-zero">
     <p class="custom-card-title center">연습 모의고사 보기</p>
 </div>
 </div>
-<div class="card custom-card-button custom-card-button-2">
+<div class="card custom-card-button custom-card-button-2" onclick="window.location.href = '/test/testclinic/'">
   <div class="card-content padding-zero">
     <p class="custom-card-title center">틀렸던 문제만 모아풀기</p>
 </div>
@@ -49,7 +49,7 @@
     {% for story in timeline %}
     <li class="collection-item avatar">
       <i class="material-icons circle {% if story.icon == 'insert_chart' %}green{% elif story.icon == 'assignment_ind' %}red{% else %}purple{% endif %}">{{ story.icon }}</i>
-      <span class="title">{{ story.user }}</span>
+      <span class="title">{{ story.title }}</span>
       <p>{{ story.content }}<br>
          {{ story.time }}
       </p>
@@ -60,7 +60,7 @@
 <div id="test4" class="col s12 white">
     <div class="row">
       <div class="col s12 center">
-        <h4>{{ request.user.name }}</h4>
+        <h4 style="font-weight:100">{{ request.user.name }}</h4>
     </div>
 </div>
 <div class="row">
@@ -94,15 +94,17 @@
 </div>
 <div class="row">
   <div class="col s12 center">
-    <h5>History</h5>
+    <a href="/history">
+    <h5 class="black-text">History</h5>
+  </a>
     <div class="divider"></div>
 </div>
 <div class="col s12 center">
-    <h5>Ranking</h5>
+    <h5 class="black-text">Ranking</h5>
     <div class="divider"></div>
 </div>
 <div class="col s12 center">
-    <a href="/accounts/logout"> <h5>Logout</h5></a>
+    <a href="/accounts/logout"> <h5 class="red-text">Logout</h5></a>
 </div>
 
 </div>

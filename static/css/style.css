@@ -14,6 +14,7 @@ body{
   border-top-width: 1px;
   border-color: #ccc;
   background: #fff;
+  z-index: 999;
 }
 .custom-card{
   margin-top: 20px;

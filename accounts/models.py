@@ -13,7 +13,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['name', 'email']
     def __str__(self):
-        return '%s' % self.name
+        return '%s' % self.username
     def get_full_name(self):
         return self.name
 
