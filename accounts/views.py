@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import User
+from main.models import Timeline
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as _login, logout as _logout
 from django.contrib import messages
@@ -43,6 +44,7 @@ def join(request):
         useradd = User(username=username, password=password)
         useradd.set_password(password)
         useradd.save()
+        Timeline.objects.create(user=useradd, title="회원가입", content="새로운 회원이 가입하였습니다!")
         return HttpResponseRedirect("/accounts/login/?join=success")
     return render(request, 'accounts/join.html')
 

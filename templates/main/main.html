@@ -46,28 +46,15 @@
 
 <div id="test2" class="col s12">
   <ul class="collection margin-zero">
+    {% for story in timeline %}
     <li class="collection-item avatar">
-      <i class="material-icons circle">star</i>
-      <span class="title">공지사항</span>
-      <p>새로운문제가 추가됬습니다. 풀어보세요!<br>
-         5분전
+      <i class="material-icons circle {% if story.icon == 'insert_chart' %}green{% elif story.icon == 'assignment_ind' %}red{% else %}purple{% endif %}">{{ story.icon }}</i>
+      <span class="title">{{ story.user }}</span>
+      <p>{{ story.content }}<br>
+         {{ story.time }}
       </p>
     </li>
-    <li class="collection-item avatar">
-      <i class="material-icons circle green">insert_chart</i>
-      <span class="title">제육덮밥님</span>
-      <p>연습 모의고사를 시작하였습니다! <br>
-         7분전
-      </p>
-      <a href="#!" class="secondary-content"></a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="material-icons circle red">assignment_ind</i>
-      <span class="title">소프</span>
-      <p>새로운 사용자가 등록되었습니다! <br>
-         11분전
-      </p>
-    </li>
+    {% endfor %}
   </ul>
 </div>
 <div id="test4" class="col s12 white">
@@ -115,7 +102,7 @@
     <div class="divider"></div>
 </div>
 <div class="col s12 center">
-    <h5>About</h5>
+    <a href="/accounts/logout"> <h5>Logout</h5></a>
 </div>
 
 </div>
