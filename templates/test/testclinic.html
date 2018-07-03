@@ -113,7 +113,7 @@
       document.getElementById("message-content").innerHTML="다음문제로 넘어갑니다!";
       document.getElementById("message-title").classList.remove('red-text');
       document.getElementById("message-title").classList.add('green-text');
-      setTimeout("history.go(0);", 1500);
+      setTimeout("window.location.href = '/test/testclinic/'", 1000);
 
     }
     else if(document.getElementById('answer').value==""){
@@ -126,8 +126,8 @@
       document.getElementById("message-title").classList.remove('green-text');
       document.getElementById("message-title").classList.add('red-text');
       document.getElementById("message-content").innerHTML="정답은 {{ problem.answer }}번입니다.";
+      setTimeout("window.location.href = '/test/testclinic/'", 1000);
 
-      setTimeout("history.go(0);", 1500);
       
     }
 
