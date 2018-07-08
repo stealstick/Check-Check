@@ -56,6 +56,17 @@ class SolveLog(models.Model):
     def __str__(self):
         return self.user.username+" "+self.problem.title
 
+class Test(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+    problems = models.ManyToManyField(Problem, related_name="test_problems", blank=True)
+    solve_problems = models.ManyToManyField(SolveLog, related_name="nosolver", blank=True)
+    time =  models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.user.username
+
 class Timeline(models.Model):
     
     title = models.CharField(max_length=100, help_text="제목")

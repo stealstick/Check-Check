@@ -1,0 +1,111 @@
+{% extends "main/base.html" %} {% load staticfiles %} {% block style %}
+<link rel="stylesheet" href="{% static '/css/history.css' %}"> 
+<link rel="stylesheet" href="{% static '/css/style.css' %}"> {% endblock %}
+{% block content %}
+<nav class="nav-extended custom-nav">
+  <div class="nav-wrapper">
+
+    <a href="#" class="brand-logo purple-text center" style="font-weight:100">모의고사결과</a>
+    <span href="/" class="left" onclick="window.location.href='/'"> <i class="material-icons">keyboard_backspace</i>
+    </span>
+  </span>
+</div>
+</nav>
+
+<div class="row">
+  <div class="col s3 center">
+    <h5>{{ solve_count }}</h5>
+    <p>푼문제</p>
+  </div>
+  <div class="col s3 center">
+    <h5>{{ solve_collect_count }}</h5>
+    <p>맞은문제
+    </p>
+  </div>
+  <div class="col s3 center">
+    <h5>{{ solve_not_collect_count }}</h5>
+    <p>틀린문제</p>
+  </div>
+  <div class="col s3 center">
+    <h5>{{ collect_percent }}%</h5>
+    <p>정답률</p>
+  </div>
+</div>
+<div class="row">
+  <div class="progress">
+    <div class="determinate" style="width: {{ collect_percent }}%"></div>
+  </div>
+  <div class="row">
+    <ul class="collapsible">
+      {% for solvelog in log %}
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">check</i>
+          <p class="truncate margin-zero">{{ solvelog.problem }}</p> 
+
+          {% if solvelog.collect %}
+          <span class="new blue badge">맞음
+            {% else %}
+            <span class="new red badge">틀림
+              {% endif %}
+
+            </span></div>
+            <div class="collapsible-body">
+              <p>{{ solvelog.problem.title }}</p>
+
+              {% if solvelog.problem.image %}
+              <img src="/media/{{ solvelog.problem.image }}" width="100%">
+              {% endif %}
+              <div class="row bogi-list">
+                <div class="row bogi">
+                  <div class="col s1 {% if solvelog.problem.answer == 1 %}green-text{% endif %} {% if solvelog.answer == 1 %}red-text{% endif %}">
+                    ①
+                  </div>
+                  <div class="col s11 {% if solvelog.problem.answer == 1 %}green-text{% endif %} {% if solvelog.answer == 1 %}red-text{% endif %}">
+                    {{ solvelog.problem.ex1 }}
+                  </div>
+                </div>
+                <div class="row bogi">
+                  <div class="col s1 {% if solvelog.problem.answer == 2 %}green-text{% endif %} {% if solvelog.answer == 2 %}red-text{% endif %}">
+                    ②
+                  </div>
+                  <div class="col s11 {% if solvelog.problem.answer == 2 %}green-text{% endif %} {% if solvelog.answer == 2 %}red-text{% endif %}">
+                    {{ solvelog.problem.ex2 }}
+                  </div>
+                </div>
+                <div class="row bogi">
+                  <div class="col s1 {% if solvelog.problem.answer == 3 %}green-text{% endif %} {% if solvelog.answer == 3 %}red-text{% endif %}">
+                    ③
+                  </div>
+                  <div class="col s11 {% if solvelog.problem.answer == 3 %}green-text{% endif %} {% if solvelog.answer == 3 %}red-text{% endif %}">
+                    {{ solvelog.problem.ex3 }}
+                  </div>
+                </div>
+                <div class="row bogi">
+                  <div class="col s1 {% if solvelog.problem.answer == 4 %}green-text{% endif %} {% if solvelog.answer == 4 %}red-text{% endif %}">
+                    ④
+                  </div>
+                  <div class="col s11 {% if solvelog.problem.answer == 4 %}green-text{% endif %} {% if solvelog.answer == 4 %}red-text{% endif %}">
+                    {{ solvelog.problem.ex4 }}
+                  </div>
+                </div>
+                <div class="row bogi">
+                  <div class="col s1 {% if solvelog.problem.answer == 5 %}green-text{% endif %} {% if solvelog.answer == 5 %}red-text{% endif %}">
+                    ⑤
+                  </div>
+                  <div class="col s11 {% if solvelog.problem.answer == 5 %}green-text{% endif %} {% if solvelog.answer == 5 %}red-text{% endif %}">
+                    {{ solvelog.problem.ex5 }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+          <li>
+          </ul>
+        </div>
+        {% endblock %}
+
+
+
+
