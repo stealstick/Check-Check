@@ -92,8 +92,9 @@ def unittest(request):
             break
     content={
         'problem':problem,
+        'unit':unit,
     }
-    return render(request, 'test/test.html', content)
+    return render(request, 'test/unittest.html', content)
 def mockteststart(request):
     test=Test.objects.create(user=request.user)
 

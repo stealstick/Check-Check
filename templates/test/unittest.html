@@ -1,0 +1,149 @@
+{% extends "test/base.html" %} {% load staticfiles %} {% block style %}
+<link rel="stylesheet" href="{% static '/css/test.css' %}"> {% endblock %}
+{% block content %}
+<nav class="nav-extended custom-nav">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo purple-text center" style="font-weight:100">연습 문제</a>
+    <span href="#modal2" class="right end modal-trigger">마치기
+    </span>
+  </div>
+</nav>
+<div class="container">
+  <p>{{ problem.title }}</p>
+
+  {% if problem.image %}
+  <img src="/media/{{ problem.image }}" width="100%">
+  {% endif %}
+  <div class="row bogi-list">
+    <div class="row bogi">
+      <div class="col s1">
+        ①
+      </div>
+      <div class="col s11">
+        {{ problem.ex1 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ②
+      </div>
+      <div class="col s11">
+        {{ problem.ex2 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ③
+      </div>
+      <div class="col s11">
+        {{ problem.ex3 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ④
+      </div>
+      <div class="col s11">
+        {{ problem.ex4 }}
+      </div>
+    </div>
+    <div class="row bogi">
+      <div class="col s1">
+        ⑤
+      </div>
+      <div class="col s11">
+        {{ problem.ex5 }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row footer-bar">
+  <div class="input-field col s3 offset-s1 input-answer">
+    <form>
+      <input type="hidden" name="pk" value="{{ problem.pk }}">
+      {% csrf_token %}
+      <select id="answer" name="answer">
+        <option value="" disabled selected>답</option>
+
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </form>
+  </div>
+  <div class="col s8 modal-trigger" href="#modal1" id="data" onclick="check()">
+    <p class="next-question">확인 후 다음문제</p>
+  </div>
+</div>
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5 id="message-title" class="red-text">틀렸습니다!</h5>
+    <p id="message-content"></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">확인</a>
+  </div>
+</div>
+<div id="modal2" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5 class="">테스트를 마치시겠습니까?</h5>
+    <p>문제풀이 기록은 MY탭에 있습니다.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">확인</a>
+  </div>
+</div>
+{% endblock %}
+{% block script %}<script>
+  function check(){
+    $.ajax({
+          url:'/test/check/',
+          type:'post',
+          data:$('form').serialize(),
+          success:function(data){
+            console.log("s");
+            console.log($('form').serialize());
+          }
+        })
+    if (document.getElementById('answer').value == {{ problem.answer }}){
+      
+      document.getElementById("message-title").innerHTML="정답입니다!";
+      document.getElementById("message-content").innerHTML="다음문제로 넘어갑니다!";
+      document.getElementById("message-title").classList.remove('red-text');
+      document.getElementById("message-title").classList.add('green-text');
+      setTimeout("window.location.href = '/test/unittest/?unit={{ unit.pk }}'", 1000);
+
+    }
+    else if(document.getElementById('answer').value==""){
+      document.getElementById("message-title").innerHTML="정답을 입력해주세요!";
+      document.getElementById("message-content").innerHTML="";
+    }
+    else{
+      document.getElementById("message-title").innerHTML="틀렸습니다!";
+
+      document.getElementById("message-title").classList.remove('green-text');
+      document.getElementById("message-title").classList.add('red-text');
+      document.getElementById("message-content").innerHTML="정답은 {{ problem.answer }}번입니다.";
+
+      setTimeout("window.location.href = '/test/unittest/?unit={{ unit.pk }}'", 1000);
+      
+    }
+
+  }
+  (function($){
+    $(function(){
+    // Plugin initialization
+    $('select').not('.disabled').formSelect();
+    $('.modal').modal();
+    $('#modal2').modal({
+      onCloseEnd: function() {
+        window.location.href = '/test/end';
+      }
+    });
+  }); 
+})(jQuery); // end of jQuery name space
+</script>
+
+{% endblock %}
