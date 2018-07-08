@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import SolveLog, Timeline, Problem
+from .models import SolveLog, Timeline, Problem, Unit
 from django.http import HttpResponse, HttpResponseRedirect
 from random import shuffle
 
@@ -67,6 +67,33 @@ def testclinic(request):
         'problem':problem,
     }
     return render(request, 'test/testclinic.html', content)
+
+
+
+
+def selectunit(request):
+    content = {
+    'unit':Unit.objects.all(),
+    }
+    return render(request, 'test/selectunit.html', content)
+
+
+def unittest(request):
+    unitpk=request.GET['unit']
+    unit=Unit.objects.get(pk=unitpk)
+    for i in range(1,300):
+        problems=Problem.objects.filter(unit=unit)
+        problems_random=list(problems)
+        shuffle(problems_random)
+        problem=problems_random[0]
+        if request.user in problem.solver.all():
+            pass
+        else:
+            break
+    content={
+        'problem':problem,
+    }
+    return render(request, 'test/test.html', content)
 
 
 

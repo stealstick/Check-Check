@@ -1,0 +1,19 @@
+{% extends "test/base.html" %} {% load staticfiles %} {% block style %}
+<link rel="stylesheet" href="{% static '/css/test.css' %}"> {% endblock %}
+{% block content %}
+<nav class="nav-extended custom-nav">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo purple-text center" style="font-weight:100">단원선택</a>
+    <span href="" class="right end modal-trigger">나가기
+    </span>
+  </div>
+</nav>
+<div class="collection">
+  {% for i in unit %}
+        <a href="#!" class="collection-item" onclick="window.location.href = '/test/unittest/?unit={{ i.pk }}'">{{ i.unit }}</a>
+        {% endfor %}
+      </div>
+{% endblock %}
+{% block script %}
+
+{% endblock %}
